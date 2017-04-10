@@ -1,0 +1,17 @@
+
+  Installed Packages: 
+
+
+  Linked Packages: 
+
+    aaa --> /home/ehuhern/temp/KPIs/aaa
+    accounts --> /home/ehuhern/temp/KPIs/accounts
+    dcomadmin --> /home/ehuhern/temp/KPIs/dcomadmin
+    resetpassword --> /home/ehuhern/temp/KPIs/resetpassword
+    o2f --> /home/ehuhern/temp/KPIs/o2f
+    o2fgordon --> /home/ehuhern/temp/KPIs/o2fgordon
+    compadmin --> /home/ehuhern/temp/KPIs/compadmin
+    compmgmt --> /home/ehuhern/temp/KPIs/compmgmt
+    competence --> /home/ehuhern/temp/KPIs/competence
+
+
