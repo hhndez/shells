@@ -2,7 +2,7 @@
 export DISPLAY=:0.0
 GIT_REPO=ssh://ehuhern@gerrit.ericsson.se:29418/DCOM/ITTE_WE
 PATH=.:$PATH:/usr/local/bin:/usr/bin/X11
-BUILD_DIR=~/temp/buildITTE
+BUILD_DIR=~/temp/build/ITTE
 WORKSPACE=~/temp/ITTE_build
 TEMP_DIR=/home/ehuhern/Work/shells/temp
 ICON_TEMP=/home/ehuhern/Work/shells/er/data/ITTE/_icons.less
@@ -11,7 +11,6 @@ TEMPAPPS="dcomlib,dcomcorelib,dcomwidgetlib,dashboard"
 APPS=(aaa accounts dcomadmin eittesd hardwaredetails podadmin allassets dcim bookings eittesdReport podmon inframon cloudmon ddputil podutil resetpassword sdadmin)
 APPS=(aaa accounts dcomadmin eittesd hardwaredetails podadmin allassets bookings eittesdReport podmon inframon cloudmon ddputil podutil resetpassword sdadmin)
 notify-send "Running in background the cdt2 build"
-echo $?
 asset() {
   expected=$1
   received=$2

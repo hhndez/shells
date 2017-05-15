@@ -1,14 +1,14 @@
 #!/bin/bash
 export DISPLAY=:0.0
-GIT_REPO=ssh://ehuhern@gerrit.ericsson.se:29418/DCOM/KPIs
+GIT_REPO=ssh://ehuhern@gerrit.ericsson.se:29418/DCOM/YAP
 PATH=.:$PATH:/usr/local/bin:/usr/bin/X11
-BUILD_DIR=~/temp/build/KPIs
-WORKSPACE=~/temp/KPIs_build
+BUILD_DIR=~/temp/build/YAP
+WORKSPACE=~/temp/YAP_build
 TEMP_DIR=/home/ehuhern/Work/shells/temp
-ICON_TEMP=/home/ehuhern/Work/shells/er/data/KPE/_icons.less
+ICON_TEMP=/home/ehuhern/Work/shells/er/data/YAP/_icons.less
 ICON_FILE=$WORKSPACE/dcomlib/src/dcomlib/icons/_icons.less
 TEMPAPPS="dcomlib,dcomcorelib,dcomwidgetlib,dashboard"
-APPS=(aaa accounts dcomadmin resetpassword o2f o2fgordon compadmin compmgmt competence)
+APPS=(aaa admin)
 notify-send "Running in background the cdt2 build"
 asset() {
   expected=$1
