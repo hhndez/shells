@@ -1,5 +1,15 @@
 #!/bin/bash
 export DISPLAY=:0.0
+############
+IDENTITY_FILE=/home/ehuhern/Work/default_dcomos_key.pem
+USER=centos
+SERVER=dcomwww03
+REMOTE_DIR=/var/www/html/yap
+DAY=$(date -d "$D" '+%d')
+MONTH=$(date -d "$D" '+%m')
+YEAR=$(date -d "$D" '+%Y')
+PREFIX=$YEAR$MONTH$DAY
+############
 GIT_REPO=ssh://ehuhern@gerrit.ericsson.se:29418/DCOM/YAP
 PATH=.:$PATH:/usr/local/bin:/usr/bin/X11
 BUILD_DIR=~/temp/build/YAP
@@ -29,15 +39,12 @@ fi
 
 rm -fR $BUILD_DIR
 
-#If workspace dir does not exists, it creates a new one and clone the repository.
 if [ ! -e $WORKSPACE ]; then
 	echo "Creating workspace..."
 	mkdir $WORKSPACE
 	echo "Cloning workspace..."
 	git clone $GIT_REPO $WORKSPACE
 	cd $WORKSPACE/dashboard
-#	echo "Downloading commit..."
-#	git reset --hard 11f8007c1ccf8c348e3a12af8440dfd03b508f69
 	pwd
 	count=1
 	for app in ${APPS[@]}
@@ -91,7 +98,6 @@ echo "Executing build"
 cd $WORKSPACE
 for app in ${APPS[@]}
 do
-   	#app=`echo "${app,,}"`
    	TEMPAPPS="$TEMPAPPS,$app"
 done
 echo "TEMPAPPS = $TEMPAPPS"
@@ -101,7 +107,32 @@ asset 0 $? "Build failed"
 
 echo "Removing temporary icon file"
 git checkout -- $ICON_FILE
-#git checkout -- $RADAR_FILE
 asset 0 $? "Checkout -- failed"
-notify-send "DONE"
 echo "CDT2 Build done"
+
+TEMPAPPS="$TEMPAPPS,i18n,layouts,locales"
+copyApps=$(echo $TEMPAPPS | tr "," "\n")
+for apps in $copyApps
+do
+	if [ ! $apps == "dcomlib" ]; then
+    	APPS+=($apps)
+    fi
+done
+
+notify-send "Deploying: $TEMPAPPS"
+ssh -i $IDENTITY_FILE $USER@$SERVER mkdir $REMOTE_DIR/temp
+echo "Backup remote files $TEMPAPPS"
+for app in ${APPS[@]}
+do
+	OLDAPP=$app"_$PREFIX"
+   	echo "Backup $REMOTE_DIR/$app to $REMOTE_DIR/temp/$OLDAPP"
+   	ssh -i $IDENTITY_FILE $USER@$SERVER mv $REMOTE_DIR/$app $REMOTE_DIR/temp/$OLDAPP
+done
+
+echo "Copying files..."
+for app in ${APPS[@]}
+do
+   	echo "Copy $BUILD_DIR/$app into $REMOTE_DIR"
+   	scp -i $IDENTITY_FILE -r $BUILD_DIR/$app $USER@$SERVER:$REMOTE_DIR
+done
+notify-send "DONE"
