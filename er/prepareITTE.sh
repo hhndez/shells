@@ -25,7 +25,7 @@ cdt2 package link ../ecutcomp/
 cdt2 package link ../dnsrecords/
 cdt2 package link ../cloudmon/
 cdt2 package link ../inframon/
-/dashboard$ cdt2 package link ../podmon/
+cdt2 package link ../podmon/
 cdt2 package link ../ddputil/
 cdt2 package link ../podutil/
 

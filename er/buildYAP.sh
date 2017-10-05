@@ -18,7 +18,7 @@ TEMP_DIR=/home/ehuhern/Work/shells/temp
 ICON_TEMP=/home/ehuhern/Work/shells/er/data/YAP/_icons.less
 ICON_FILE=$WORKSPACE/dcomlib/src/dcomlib/icons/_icons.less
 TEMPAPPS="dcomlib,dcomcorelib,dcomwidgetlib,dashboard"
-APPS=(aaa admin)
+APPS=(aaa profilecomponent admin accounts serviceapp)
 notify-send "Running in background the cdt2 build"
 asset() {
   expected=$1

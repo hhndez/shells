@@ -7,9 +7,9 @@ WORKSPACE=~/temp/ITTE_build
 TEMP_DIR=/home/ehuhern/Work/shells/temp
 ICON_TEMP=/home/ehuhern/Work/shells/er/data/ITTE/_icons.less
 ICON_FILE=$WORKSPACE/dcomlib/src/dcomlib/icons/_icons.less
-TEMPAPPS="dcomlib,dcomcorelib,dcomwidgetlib,dashboard"
+TEMPAPPS="dcomlib,dcomcorelib,dcomsdk,dcomwidgetlib,dashboard"
 APPS=(aaa accounts dcomadmin eittesd hardwaredetails podadmin allassets dcim bookings eittesdReport podmon inframon cloudmon ddputil podutil resetpassword sdadmin)
-APPS=(aaa accounts dcomadmin eittesd hardwaredetails podadmin allassets bookings eittesdReport podmon inframon cloudmon ddputil podutil resetpassword sdadmin)
+APPS=(aaa timerComponent accounts monitor dcomadmin ecutcomp hardwaredetails podadmin allassets bookings podmon inframon cloudmon ddputil podutil resetpassword sdadmin)
 notify-send "Running in background the cdt2 build"
 asset() {
   expected=$1
@@ -64,6 +64,7 @@ echo "Checking that every app is included in package list..."
 for app in ${APPS[@]}
 do
 	app=`echo "${app,,}"`
+	echo "Checking app: $app"
 	fgrep "$app -->" $TEMP_DIR/list.txt 	
 	asset 0 $? "Does not exists $app into the dashboard app"
 done

@@ -7,7 +7,7 @@ WORKSPACE=~/temp/KPIs_build
 TEMP_DIR=/home/ehuhern/Work/shells/temp
 ICON_TEMP=/home/ehuhern/Work/shells/er/data/KPE/_icons.less
 ICON_FILE=$WORKSPACE/dcomlib/src/dcomlib/icons/_icons.less
-TEMPAPPS="dcomlib,dcomcorelib,dcomwidgetlib,dashboard"
+TEMPAPPS="dcomlib,dcomcorelib,dcomsdk,dashboard"
 APPS=(aaa accounts dcomadmin resetpassword o2f o2fgordon compadmin compmgmt competence)
 notify-send "Running in background the cdt2 build"
 asset() {
